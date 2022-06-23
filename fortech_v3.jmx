@@ -151,8 +151,8 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="title" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">title</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;card-title&quot;&gt;&lt;a href=&quot;https:\/\/www.fortech.ro\/job-openings\/(.+?)&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
-              <stringProp name="RegexExtractor.template">$2$</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;card-title&quot;&gt;&lt;a href=&quot;(.+?)job-openings\/(.+?)\/&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$3$</stringProp>
               <stringProp name="RegexExtractor.default">not_found</stringProp>
               <stringProp name="RegexExtractor.match_number">-1</stringProp>
             </RegexExtractor>
@@ -160,8 +160,8 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="link" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">link</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;card-title&quot;&gt;&lt;a href=&quot;https:\/\/www.fortech.ro\/job-openings\/(.+?)&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
-              <stringProp name="RegexExtractor.template">https://www.fortech.ro/job-openings/$1$</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;card-title&quot;&gt;&lt;a href=&quot;(.+?)job-openings\/(.+?)\/&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">https://www.fortech.ro/job-openings/$2$</stringProp>
               <stringProp name="RegexExtractor.default">not_found</stringProp>
               <stringProp name="RegexExtractor.match_number">-1</stringProp>
             </RegexExtractor>
