@@ -13,6 +13,16 @@
             <stringProp name="Argument.value">fortech</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="country" elementType="Argument">
+            <stringProp name="Argument.name">country</stringProp>
+            <stringProp name="Argument.value">Romania</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="remote" elementType="Argument">
+            <stringProp name="Argument.name">remote</stringProp>
+            <stringProp name="Argument.value">remote</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </elementProp>
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
@@ -39,7 +49,15 @@
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete all data from Search Engine for company ${company} " enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-              <collectionProp name="Arguments.arguments"/>
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="company" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">${company}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">company</stringProp>
+                </elementProp>
+              </collectionProp>
             </elementProp>
             <stringProp name="HTTPSampler.domain">api.peviitor.ro</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
@@ -67,12 +85,7 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             </JSR223PostProcessor>
             <hashTree/>
             <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-              <collectionProp name="HeaderManager.headers">
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">apikey</stringProp>
-                  <stringProp name="Header.value">1248541-a5bf-d2ad-144c-675ec558be1a</stringProp>
-                </elementProp>
-              </collectionProp>
+              <collectionProp name="HeaderManager.headers"/>
             </HeaderManager>
             <hashTree/>
           </hashTree>
@@ -143,7 +156,7 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="title" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">title</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;card-title&quot;&gt;&lt;a href=&quot;(.+?)job-openings\/(.+?)\/&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;card-title&quot;&gt;&lt;a href=&quot;(.+?)job-openings\/(.+?)&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
               <stringProp name="RegexExtractor.template">$3$</stringProp>
               <stringProp name="RegexExtractor.default">not_found</stringProp>
               <stringProp name="RegexExtractor.match_number">-1</stringProp>
@@ -152,26 +165,8 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="link" enabled="true">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">link</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;card-title&quot;&gt;&lt;a href=&quot;(.+?)job-openings\/(.+?)\/&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;card-title&quot;&gt;&lt;a href=&quot;(.+?)job-openings\/(.+?)&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
               <stringProp name="RegexExtractor.template">https://www.fortech.ro/job-openings/$2$</stringProp>
-              <stringProp name="RegexExtractor.default">not_found</stringProp>
-              <stringProp name="RegexExtractor.match_number">-1</stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="country" enabled="true">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">country</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;card-title&quot;&gt;&lt;a href=&quot;https:\/\/www.fortech.ro\/job-openings\/(.+?)&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
-              <stringProp name="RegexExtractor.template">Romania</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number">-1</stringProp>
-            </RegexExtractor>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="city" enabled="true">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">city</stringProp>
-              <stringProp name="RegexExtractor.regex">&lt;h3 class=&quot;card-title&quot;&gt;&lt;a href=&quot;https:\/\/www.fortech.ro\/job-openings\/(.+?)&quot;&gt;(.+?)&lt;\/a&gt;</stringProp>
-              <stringProp name="RegexExtractor.template">remote</stringProp>
               <stringProp name="RegexExtractor.default">not_found</stringProp>
               <stringProp name="RegexExtractor.match_number">-1</stringProp>
             </RegexExtractor>
@@ -243,10 +238,170 @@ vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
 var k = vars.get(&quot;k&quot;);
 var title = vars.get(&quot;title_&quot;+k);
 var link  = vars.get(&quot;link_&quot;+k);
-var country = vars.get(&quot;country_&quot;+k);
-var city =  vars.get(&quot;city_&quot;+k);
+var country = vars.get(&quot;country&quot;);
+var remote =  vars.get(&quot;remote&quot;);
 
-String this_job = &apos;{&quot;id&quot;:&quot;&apos;+id+&apos;&quot;,&quot;job_title&quot;:&quot;&apos;+title+&apos;&quot;, &quot;job_link&quot;:&quot;&apos;+link+&apos;&quot;,&quot;company&quot;:&quot;${company}&quot;,&quot;country&quot;:&quot;&apos;+country+&apos;&quot;,&quot;city&quot;:&quot;&apos;+city+&apos;&quot;}&apos;;
+String this_job = &apos;{&quot;id&quot;:&quot;&apos;+id+&apos;&quot;,&quot;job_title&quot;:&quot;&apos;+title+&apos;&quot;, &quot;job_link&quot;:&quot;&apos;+link+&apos;&quot;,&quot;company&quot;:&quot;${company}&quot;,&quot;country&quot;:&quot;&apos;+country+&apos;&quot;,&quot;remote&quot;:&quot;&apos;+remote+&apos;&quot;}&apos;;
+var jobList = vars.getObject(&quot;jobList&quot;);
+jobList = jobList + this_job;
+vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Sampler>
+            <hashTree/>
+          </hashTree>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   GET INTERNSHIP open positions from WEBSITE    ====" enabled="true"/>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="company&apos;s website - careers page" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">www.fortech.ro</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/careers/training-internship-programs/</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="TestPlan.comments">careers page</stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers"/>
+            </HeaderManager>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="title" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">title</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;a href=&quot;https://www.fortech.ro/careers/training-internship-programs/(.+?)&quot;&gt;(.+?)&lt;/a&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$2$</stringProp>
+              <stringProp name="RegexExtractor.default">not_found</stringProp>
+              <stringProp name="RegexExtractor.match_number">-1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="link" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">link</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;a href=&quot;https://www.fortech.ro/careers/training-internship-programs/(.+?)&quot;&gt;(.+?)&lt;/a&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">https://www.fortech.ro/training-internship-programs/$1$</stringProp>
+              <stringProp name="RegexExtractor.default">not_found</stringProp>
+              <stringProp name="RegexExtractor.match_number">-1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname=" ===   CREATE a LIST of open positions    ====" enabled="true">
+          <stringProp name="TestPlan.comments">Transform</stringProp>
+        </GenericController>
+        <hashTree>
+          <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Controller" enabled="true">
+            <stringProp name="ForeachController.inputVal">title</stringProp>
+            <stringProp name="ForeachController.returnVal">job</stringProp>
+            <boolProp name="ForeachController.useSeparator">true</boolProp>
+            <stringProp name="ForeachController.startIndex">0</stringProp>
+          </ForeachController>
+          <hashTree>
+            <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
+              <stringProp name="CounterConfig.start">1</stringProp>
+              <stringProp name="CounterConfig.end"></stringProp>
+              <stringProp name="CounterConfig.incr">1</stringProp>
+              <stringProp name="CounterConfig.name">l</stringProp>
+              <stringProp name="CounterConfig.format"></stringProp>
+              <boolProp name="CounterConfig.per_user">false</boolProp>
+            </CounterConfig>
+            <hashTree/>
+            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="${job}" enabled="true">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">var id = UUID.randomUUID().toString();
+var k = vars.get(&quot;l&quot;);
+var title = vars.get(&quot;title_&quot;+k);
+var link  = vars.get(&quot;link_&quot;+k);
+var country = vars.get(&quot;country&quot;);
+var remote =  vars.get(&quot;remote&quot;);
+
+String this_job = &apos;{&quot;id&quot;:&quot;&apos;+id+&apos;&quot;,&quot;job_title&quot;:&quot;&apos;+title+&apos;&quot;, &quot;job_link&quot;:&quot;&apos;+link+&apos;&quot;,&quot;company&quot;:&quot;${company}&quot;,&quot;country&quot;:&quot;&apos;+country+&apos;&quot;,&quot;remote&quot;:&quot;&apos;+remote+&apos;&quot;}&apos;;
 var jobList = vars.getObject(&quot;jobList&quot;);
 jobList = jobList + this_job;
 vars.putObject(&quot;jobList&quot;,jobList);</stringProp>
